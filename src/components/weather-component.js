@@ -12,17 +12,17 @@ const WeatherComponent = (props) => {
         <div className="weather-data">
           {props.city && props.country && (
             <div>
-              <h2>
+              <h3>
                 {props.city},{props.country}
-              </h2>
+              </h3>
               <div className="weather-icon">
                 <img src={`${imgUrl}`} alt={`${props.weather}`} />
               </div>
               <div className="weather-info">
-                <h2>
+                <h3>
                   {props.temp}&deg;F
                   <br />
-                </h2>
+                </h3>
                 <h3> {props.weather}</h3>
                 <h5>
                   <div className="temp">Min Temp: {props.minTemp}&deg;F</div>
