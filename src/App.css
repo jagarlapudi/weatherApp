@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .top-padding-20 {
+    padding-top: 20px;
+  }
+}
+
+.input-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.5); /* Color white with alpha 0.9*/
+  margin-bottom: 20px;
+}
+.weather-card {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.weather-data {
+  display: flex;
+  width: 250px;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  justify-content: center;
+  box-shadow: 5px 5px 3px 0px darkslateblue;
+  background-color: lightsteelblue;
+}
+button {
+  font-size: 14px;
+  border-radius: 2px;
+  margin: 10px;
+  background-color: #999;
+  color: white;
+  font-weight: bold;
+}
+
+.location {
+  margin: 0px 10px 0px 10px;
+  padding: 5px;
+}
+
+.temp {
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.weather-icon .wi {
+  margin-top: 20px;
+}
+.weather-info h4 {
+  margin-top: 20px;
+  font-size: 80px;
+  text-align: center;
+}
