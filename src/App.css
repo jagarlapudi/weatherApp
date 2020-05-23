@@ -26,23 +26,26 @@
 }
 .weather-card {
   display: flex;
-  margin: 10px;
-  padding: 10px;
+
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .weather-data {
   display: flex;
   width: 250px;
-  height: auto;
+  min-height: 380px;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid #fff;
   border-radius: 5px;
   justify-content: center;
-  box-shadow: 5px 5px 3px 0px darkslateblue;
-  background-color: lightsteelblue;
+  color: #fff;
+  box-shadow: rgba(20, 19, 19, 0.4);
+}
+.weather-data.first-card {
+  border: 2px solid orange;
 }
 button {
   font-size: 14px;
@@ -53,6 +56,10 @@ button {
   font-weight: bold;
 }
 
+h4.error {
+  color: rgb(175, 41, 41);
+  font-weight: bold;
+}
 .location {
   margin: 0px 10px 0px 10px;
   padding: 5px;

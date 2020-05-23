@@ -9,12 +9,17 @@ const WeatherComponent = (props) => {
           Please Enter City and Country
         </div>
       ) : (
-        <div className="weather-data">
+        <div
+          className={
+            props.card === 0 ? "weather-data first-card" : "weather-data"
+          }
+        >
           {props.city && props.country && (
             <div>
               <h3>
                 {props.city},{props.country}
               </h3>
+              {props.card === 0 && <h4>(Current Location)</h4>}
               <div className="weather-icon">
                 <img src={`${imgUrl}`} alt={`${props.weather}`} />
               </div>
