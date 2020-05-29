@@ -6,7 +6,7 @@ const closeButtonComponent = (props) => {
       <div
         name="close"
         className="close-button"
-        onClick={() => closeDiv(props.removewidget)}
+        onClick={() => this.closeDiv(props)}
       >
         Clear
       </div>
@@ -14,12 +14,13 @@ const closeButtonComponent = (props) => {
   );
 };
 
-const closeDiv = (index) => {
-  let widgets = this.state.weatherData.slice();
-  widgets.splice(index, 1);
+function closeDiv(props) {
+  let widgets = props.weatherData;
+  console.log("widgets : " + widgets + " " + props.index);
+  //widgets.splice(index, 1);
   this.setState({
-    widgets,
+    ...widgets,
   });
   console.log("Close me: " + widgets);
-};
+}
 export default closeButtonComponent;

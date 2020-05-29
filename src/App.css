@@ -45,12 +45,18 @@
   width: 250px;
   min-height: 380px;
   margin: 10px;
+  text-align: center;
   padding: 10px 20px 10px 10px;
   border: 2px solid #fff;
   border-radius: 5px;
   justify-content: center;
   color: #fff;
   box-shadow: rgba(20, 19, 19, 0.4);
+}
+@media (min-width: 576px) {
+  .weather-data {
+    width: 250px !important;
+  }
 }
 .weather-data.first-card {
   border: 2px solid orange;
@@ -63,7 +69,9 @@ button {
   color: white;
   font-weight: bold;
 }
-
+.logo {
+  width: 99%;
+}
 h6.error {
   color: rgb(175, 41, 41);
   font-weight: bold;
@@ -111,8 +119,7 @@ h6.error {
 }
 
 .input-container img {
-  float: left;
-  margin-bottom: 30px;
+  max-width: 100%;
 }
 .current-location {
   position: absolute;

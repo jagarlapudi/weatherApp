@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import "./App.css";
 import WeatherComponent from "./components/weather-component";
 import InputComponent from "./components/input-component";
-import currentLocationComponent from "./components/current-location-component";
 import "bootstrap/dist/css/bootstrap.min.css";
 import mainLogo from "./images/weatherman-logo.png";
 
 const api_key = process.env.REACT_APP_WEATHERAPI_KEY;
 const api_url = "http://api.openweathermap.org/data/2.5/weather?";
+const ipstack_Key = process.env.REACT_APP_IPSTACK_API_USER_KEY;
+const ipstack_api_url = "http://api.ipstack.com/";
+
 class App extends Component {
   state = {
     weatherData: [],
@@ -17,12 +19,15 @@ class App extends Component {
     position: {
       latitude: null,
       longitude: null,
+      userIp: null,
+      city: null,
+      country: null,
+      flag: null,
     },
     locationError: false,
   };
 
   getPosition = (position) => {
-    console.log(position);
     this.setState({
       position: {
         latitude: position.coords.latitude,
@@ -32,13 +37,34 @@ class App extends Component {
     this.getLocalWeather();
   };
 
+  getUserIP = async () => {
+    const userIPAPI = await fetch("https://api.ipify.org/?format=json");
+    const api_response = await userIPAPI.json();
+    const fetchLocationInfo = await fetch(
+      `${ipstack_api_url}${api_response.ip}?access_key=${ipstack_Key}`
+    );
+    const locationResponse = await fetchLocationInfo.json();
+    if (api_response.ip) {
+      this.setState({
+        position: {
+          userIp: api_response.ip,
+          city: locationResponse.city,
+          country: locationResponse.country,
+          flag: locationResponse.location.country_flag_emoji,
+        },
+      });
+      this.callWeatherAPI(
+        this.state.position.city,
+        this.state.position.country
+      );
+    }
+  };
   getLocation = () => {
     let positionOptions = {
-      timeout: Infinity,
+      timeout: 10000,
       maximumAge: 0,
       enableHighAccuracy: true,
     };
-
     navigator.geolocation.getCurrentPosition(
       this.getPosition,
       this.catchError,
@@ -48,8 +74,18 @@ class App extends Component {
 
   componentDidMount() {
     this.getLocation();
+    //this.getUserIP();
   }
 
+  closeWidget = (index) => {
+    const weatherData = this.state.weatherData;
+    weatherData.splice(index, 1);
+    this.setState({
+      ...weatherData,
+    });
+  };
+
+  //Data will be set to state from API response
   setWeatherData = (response) => {
     const weatherInfo = {
       city: response.name,
@@ -67,6 +103,7 @@ class App extends Component {
     });
   };
 
+  //Change background based on temperature
   weatherBackground = (temp) => {
     let backgroundSet = "";
     if (temp < 40) {
@@ -79,10 +116,11 @@ class App extends Component {
     return backgroundSet;
   };
 
+  //get local weather co ordinates and call api with latitude and longitude
   getLocalWeather = async () => {
     if (navigator.geolocation) {
       const api_call_location = await fetch(
-        `${api_url}lat=${this.state.position.latitude}&lon=${this.state.position.longitude}&appid=${api_key}`
+        `${api_url}&lat=${this.state.position.latitude}&lon=${this.state.position.longitude}&appid=${api_key}`
       );
       const response = await api_call_location.json();
       this.setWeatherData(response);
@@ -91,8 +129,9 @@ class App extends Component {
     }
   };
 
+  //catch any errors for local weather if user dont allow geo location access / other errors
   catchError = (positionError) => {
-    console.log(positionError.code);
+    this.getUserIP();
     switch (positionError.code) {
       case positionError.TIMEOUT:
         this.setState({
@@ -122,28 +161,34 @@ class App extends Component {
     }
   };
 
+  callWeatherAPI = async (city, country) => {
+    const api_call = await fetch(
+      `${api_url}q=${city},${country}&appid=${api_key}`
+    )
+      .then((response) => {
+        if (response.status !== 200) {
+          this.setState({
+            error: true,
+          });
+        }
+        return response.json();
+      })
+      .then((res) => {
+        this.setWeatherData(res);
+      })
+      .catch((err) => console.log("Error calling API: " + err.message));
+  };
+  //call api using user input
   getWeatherData = async (event) => {
     event.preventDefault();
     const city = event.target.city.value;
     const country = event.target.country.value;
-    let api_call;
     if (city && country) {
-      api_call = await fetch(`${api_url}q=${city},${country}&appid=${api_key}`)
-        .then((response) => {
-          if (response.status !== 200) {
-            this.setState({
-              error: true,
-            });
-          }
-          return response.json();
-        })
-        .then((res) => {
-          this.setWeatherData(res);
-        })
-        .catch((err) => console.log("Error calling API: " + err.message));
+      this.callWeatherAPI(city, country);
     }
   };
 
+  //To convert weather to Fahrenheit based on API response
   convertKtoF = (temp) => {
     const celsius = temp - 273;
     const fahrenheit = celsius * (9 / 5) + 32;
@@ -166,6 +211,7 @@ class App extends Component {
           card={index}
           locationError={this.state.errorState}
           background={data.backdrop}
+          closeAction={() => this.closeWidget(index)}
         />
       );
     });
@@ -174,10 +220,10 @@ class App extends Component {
       <div className="App">
         <div className="container input-container">
           <div className="row">
-            <div className="col-md-12 mb-3">
+            <div className="col-xs-12 mb-3">
               <img
                 src={mainLogo}
-                width="350px"
+                width="420px"
                 height="100px"
                 alt="WeatherMan Application"
               />

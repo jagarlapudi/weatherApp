@@ -1,5 +1,4 @@
 import React from "react";
-import CloseButtonComponent from "./close-component";
 
 const WeatherComponent = (props) => {
   const imgUrl = `http://openweathermap.org/img/wn/${props.icon}@2x.png`;
@@ -24,10 +23,20 @@ const WeatherComponent = (props) => {
           {props.city && props.country && (
             <div>
               {props.card !== 0 && (
-                <CloseButtonComponent removewidget={props.card} />
+                /*   <CloseButtonComponent
+                  removewidget={props.card}
+                  weatherData={props.weatherData}
+                /> */
+                <div
+                  name="close"
+                  className="close-button"
+                  onClick={() => props.closeAction(this)}
+                >
+                  Clear
+                </div>
               )}
+              {console.log(props.weatherData)}
               <h3>
-                {props.loading}
                 {props.city}, {props.country}
               </h3>
               {document.body.classList.add(props.background)}

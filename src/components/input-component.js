@@ -4,7 +4,7 @@ const InputComponent = (props) => {
     <div className="container">
       <form onSubmit={props.getWeather}>
         <div className="row">
-          <div className="col-md-3 offset-md-2 mb-2">
+          <div className="col-md-3 offset-md-2">
             <input
               className="form-control"
               type="text"
