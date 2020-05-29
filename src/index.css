@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./images/weather-image.jpg");
+  background: url("./images/spring-day.jpg");
   background-size: cover !important;
   background-repeat: no-repeat;
   background-color: lavender;
@@ -14,4 +14,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.spring-day {
+  background: url("./images/spring-day.jpg");
+  opacity: 0.2;
+}
+
+.summer-day {
+  background-image: url("./images/summer-day.jpg");
+}
+.winter-day {
+  background: url("./images/snow-day.jpg");
+  opacity: 0.5;
 }

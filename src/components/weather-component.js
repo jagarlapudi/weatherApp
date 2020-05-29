@@ -1,4 +1,5 @@
 import React from "react";
+import CloseButtonComponent from "./close-component";
 
 const WeatherComponent = (props) => {
   const imgUrl = `http://openweathermap.org/img/wn/${props.icon}@2x.png`;
@@ -11,15 +12,25 @@ const WeatherComponent = (props) => {
       ) : (
         <div
           className={
-            props.card === 0 ? "weather-data first-card" : "weather-data"
+            props.card === 0 && !props.locationError
+              ? "weather-data first-card"
+              : "weather-data"
           }
         >
+          {props.card === 0 && !props.locationError && (
+            <h6 className="current-location">Current Location</h6>
+          )}
+
           {props.city && props.country && (
             <div>
+              {props.card !== 0 && (
+                <CloseButtonComponent removewidget={props.card} />
+              )}
               <h3>
-                {props.city},{props.country}
+                {props.loading}
+                {props.city}, {props.country}
               </h3>
-              {props.card === 0 && <h4>(Current Location)</h4>}
+              {document.body.classList.add(props.background)}
               <div className="weather-icon">
                 <img src={`${imgUrl}`} alt={`${props.weather}`} />
               </div>
