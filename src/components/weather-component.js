@@ -9,12 +9,33 @@ const WeatherComponent = (props) => {
           Please Enter City and Country
         </div>
       ) : (
-        <div className="weather-data">
+        <div
+          className={
+            props.card === 0 && props.locationError
+              ? "weather-data first-card"
+              : "weather-data"
+          }
+        >
+          {props.card === 0 && props.locationError && (
+            <h6 className="current-location">Current Location</h6>
+          )}
+
           {props.city && props.country && (
             <div>
+              {props.card !== 0 && (
+                <div
+                  name="close"
+                  className="close-button"
+                  onClick={() => props.closeAction(this)}
+                >
+                  Clear
+                </div>
+              )}
+              {console.log(props.weatherData)}
               <h3>
-                {props.city},{props.country}
+                {props.city}, {props.country}
               </h3>
+              {document.body.classList.add(props.background)}
               <div className="weather-icon">
                 <img src={`${imgUrl}`} alt={`${props.weather}`} />
               </div>

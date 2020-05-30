@@ -18,31 +18,48 @@
   }
 }
 
+.container.background {
+  background: rgba(0, 191, 255, 0.6);
+  border: 1px solid #ccc;
+  box-shadow: 5px 5px 10px #808080;
+}
 .input-container {
   padding: 20px;
   border: 1px solid #ccc;
-  background-color: rgba(255, 255, 255, 0.5); /* Color white with alpha 0.9*/
+  box-shadow: 5px 5px 10px #ccc;
+  background-color: rgba(70, 130, 180, 0.4); /* Color white with alpha 0.9*/
   margin-bottom: 20px;
 }
 .weather-card {
   display: flex;
-  margin: 10px;
-  padding: 10px;
+
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
-
+.weather-card.left {
+  justify-content: left;
+}
 .weather-data {
   display: flex;
-  width: 250px;
-  height: auto;
+  width: auto;
+  min-height: 380px;
   margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px 20px 10px 10px;
+  border: 2px solid #fff;
   border-radius: 5px;
   justify-content: center;
-  box-shadow: 5px 5px 3px 0px darkslateblue;
-  background-color: lightsteelblue;
+  color: #fff;
+  box-shadow: rgba(20, 19, 19, 0.4);
+}
+@media (min-width: 576px) {
+  .weather-data {
+    width: 250px !important;
+  }
+}
+.weather-data.first-card {
+  border: 2px solid orange;
 }
 button {
   font-size: 14px;
@@ -52,7 +69,16 @@ button {
   color: white;
   font-weight: bold;
 }
-
+.logo {
+  width: 99%;
+}
+h6.error {
+  color: rgb(175, 41, 41);
+  font-weight: bold;
+  background-color: lightcyan;
+  padding: 10px;
+  border: 2px solid orange;
+}
 .location {
   margin: 0px 10px 0px 10px;
   padding: 5px;
@@ -68,6 +94,41 @@ button {
 }
 .weather-info h4 {
   margin-top: 20px;
-  font-size: 80px;
   text-align: center;
+}
+
+.loading {
+  background: url("./images/loading.gif");
+}
+.cloudy {
+  background: url("./images/cloudy.gif");
+}
+
+.close-button {
+  font-weight: bold;
+  color: #fff;
+  text-align: right;
+  position: absolute;
+  bottom: 15px;
+  font-size: 16px;
+  right: 110px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.close-button:hover {
+  cursor: pointer;
+}
+
+.input-container img {
+  max-width: 100%;
+}
+.current-location {
+  position: absolute;
+  text-align: center;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+  display: block;
+  background-color: #000;
+  bottom: 12px;
+  margin: 0 auto;
 }
