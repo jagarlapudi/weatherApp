@@ -4,7 +4,7 @@ const InputComponent = (props) => {
     <div className="container">
       <form onSubmit={props.getWeather}>
         <div className="row">
-          <div className="col-md-3 offset-md-2">
+          <div className="col-md-3 offset-md-2 mt-2">
             <input
               className="form-control"
               type="text"
@@ -13,7 +13,7 @@ const InputComponent = (props) => {
               placeholder="City"
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-3 mt-2">
             <input
               className="form-control"
               type="text"
@@ -23,7 +23,7 @@ const InputComponent = (props) => {
             />
           </div>
 
-          <div className="col-md-3 top-padding-20">
+          <div className="col-md-3 ">
             <button type="submit" className="btn btn-warning">
               Get Weather
             </button>

@@ -209,7 +209,7 @@ class App extends Component {
           icon={data.icon}
           key={index}
           card={index}
-          locationError={this.state.errorState}
+          locationError={this.state.position.userIp}
           background={data.backdrop}
           closeAction={() => this.closeWidget(index)}
         />
@@ -241,13 +241,13 @@ class App extends Component {
               </div>
             )}
             {this.state.locationError && (
-              <div className="col-sm-6 offset-2 mt-4">
+              <div className="col-sm-6 col-md-6 offset-md-3 mt-4">
                 <h6 className="error">{this.state.locationError}</h6>
               </div>
             )}
           </div>
         </div>
-        <div className="container background">
+        <div className="container background text-center">
           <div
             className={
               this.state.weatherData.length > 3

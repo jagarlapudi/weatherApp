@@ -42,7 +42,7 @@
 }
 .weather-data {
   display: flex;
-  width: 250px;
+  width: auto;
   min-height: 380px;
   margin: 10px;
   text-align: center;
@@ -129,7 +129,6 @@ h6.error {
   letter-spacing: 2px;
   display: block;
   background-color: #000;
-  bottom: 3px;
-  left: 26px;
-  padding: 5px 48px 5px 48px;
+  bottom: 12px;
+  margin: 0 auto;
 }
