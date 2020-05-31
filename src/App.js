@@ -8,7 +8,7 @@ import mainLogo from "./images/weatherman-logo.png";
 const api_key = process.env.REACT_APP_WEATHERAPI_KEY;
 const api_url = "https://api.openweathermap.org/data/2.5/weather?";
 const ipstack_Key = process.env.REACT_APP_IPSTACK_API_USER_KEY;
-const ipstack_api_url = "https://api.ipstack.com/";
+const ipstack_api_url = "http://api.ipstack.com/";
 
 class App extends Component {
   state = {
@@ -50,7 +50,6 @@ class App extends Component {
           userIp: api_response.ip,
           city: locationResponse.city,
           country: locationResponse.country,
-          flag: locationResponse.location.country_flag_emoji,
         },
       });
       this.callWeatherAPI(
@@ -74,9 +73,8 @@ class App extends Component {
 
   componentDidMount() {
     this.getLocation();
-    //this.getUserIP();
+    //     this.getUserIP();
   }
-
   closeWidget = (index) => {
     const weatherData = this.state.weatherData;
     weatherData.splice(index, 1);
@@ -131,7 +129,6 @@ class App extends Component {
 
   //catch any errors for local weather if user dont allow geo location access / other errors
   catchError = (positionError) => {
-    this.getUserIP();
     switch (positionError.code) {
       case positionError.TIMEOUT:
         this.setState({
@@ -152,6 +149,7 @@ class App extends Component {
           locationError:
             "Warning: Couldn't find Current location as user denied permissions",
         });
+        this.getUserIP();
         break;
       default:
         this.setState({

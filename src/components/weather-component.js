@@ -11,12 +11,10 @@ const WeatherComponent = (props) => {
       ) : (
         <div
           className={
-            props.card === 0 && props.locationError
-              ? "weather-data first-card"
-              : "weather-data"
+            props.card === 0 ? "weather-data first-card" : "weather-data"
           }
         >
-          {props.card === 0 && props.locationError && (
+          {props.card === 0 && (
             <h6 className="current-location">Current Location</h6>
           )}
 
@@ -31,7 +29,6 @@ const WeatherComponent = (props) => {
                   Clear
                 </div>
               )}
-              {console.log(props.weatherData)}
               <h3>
                 {props.city}, {props.country}
               </h3>
