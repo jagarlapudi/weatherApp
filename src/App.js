@@ -8,7 +8,7 @@ import mainLogo from "./images/weatherman-logo.png";
 const api_key = process.env.REACT_APP_WEATHERAPI_KEY;
 const api_url = "https://api.openweathermap.org/data/2.5/weather?";
 const ipstack_Key = process.env.REACT_APP_IPSTACK_API_USER_KEY;
-const ipstack_api_url = "http://api.ipstack.com/";
+const ipstack_api_url = "https://api.ipstack.com/";
 
 class App extends Component {
   state = {
