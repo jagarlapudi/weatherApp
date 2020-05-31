@@ -42,7 +42,7 @@
 }
 .weather-data {
   display: flex;
-  width: auto;
+  width: 100%;
   min-height: 380px;
   margin: 10px;
   text-align: center;

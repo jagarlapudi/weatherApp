@@ -3,7 +3,7 @@ import React from "react";
 const WeatherComponent = (props) => {
   const imgUrl = `http://openweathermap.org/img/wn/${props.icon}@2x.png`;
   return (
-    <div className="col-md-4 col-sm-6 col-xs-12">
+    <div className="col-lg-4 col-sm-6 col-xs-12">
       {props.error ? (
         <div className="alert alert-danger mx-5" role="alert">
           Please Enter City and Country
