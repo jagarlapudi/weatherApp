@@ -4,10 +4,10 @@ import WeatherComponent from "./components/weather-component";
 import InputComponent from "./components/input-component";
 import "bootstrap/dist/css/bootstrap.min.css";
 import mainLogo from "./images/weatherman-logo.png";
-/* import Amplify, { Auth, API } from "aws-amplify";
+import Amplify, { Auth, API } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "./aws-exports";
-Amplify.configure(awsconfig); */
+Amplify.configure(awsconfig);
 
 const api_key = process.env.REACT_APP_WEATHERAPI_KEY;
 const api_url = "https://api.openweathermap.org/data/2.5/weather?";
