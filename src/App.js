@@ -5,7 +5,7 @@ import InputComponent from "./components/input-component";
 import "bootstrap/dist/css/bootstrap.min.css";
 import mainLogo from "./images/weatherman-logo.png";
 import Amplify, { Auth, API } from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "./src/aws-exports";
 Amplify.configure(awsconfig);
 
